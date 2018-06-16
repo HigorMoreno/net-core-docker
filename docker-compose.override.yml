@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  catalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ConnectionString=mongodb://nosql.data
+      - Database=CatalogDb
+      - IdentityUrlExternal=5101
+    ports:
+      - "5101:80"   # Important: In a production environment your should remove the external port (5109) kept here for microservice debugging purposes. 
+                    # The API Gateway redirects and access through the internal port (80).
+
+  nosql.data:
+    ports:
+      - "27017:27017"  # Important: In a production environment your should remove the external port
